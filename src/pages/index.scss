@@ -1,0 +1,29 @@
+.home {
+  display: flex;
+
+  .column {
+    height: 100vh;
+    width: 50%;
+  }
+
+  &__left {
+    overflow: hidden;
+
+    > * {
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //-moz-transform: scale(2); /* for Firefox, default 1*/
+      //zoom:200%; /* For Chrome, IE, default 100%*/
+    }
+    &__coffee{
+    }
+
+    &__weather{
+    }
+  }
+
+  &__right {
+  }
+}

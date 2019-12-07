@@ -1,0 +1,29 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "lambda-serve": "netlify-lambda serve ./src -c ./webpack.config.js",
+    "lambda-build": "netlify-lambda build ./src -c ./webpack.config.js"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@turf/turf": "^5.1.6",
+    "btoa": "^1.2.1",
+    "encoding": "^0.1.12",
+    "faunadb": "^2.7.0",
+    "humps": "^2.0.1",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "netlify-lambda": "^1.4.13"
+  },
+  "private": true
+}
