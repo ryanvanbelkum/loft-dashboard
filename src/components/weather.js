@@ -32,20 +32,24 @@ const BACKGROUND_MAP = {
 const Weather = () => {
   const [weather, setWeather] = useState(null);
   useEffect(() => {
-    fetch('https://api.darksky.net/forecast/d8be2b19a521f77df55dfd0a103e3c9b/39.767450,-94.849930?exclude=daily,minutely,alerts,flags,hourly')
+    fetch('https://nostalgic-panini-628d13.netlify.com/.netlify/functions/weather')
       .then(res => res.json())
       .then(res => humps.camelizeKeys(res))
       .then(res => setWeather(res));
   }, []);
-  const weatherCls = weather && ICON_MAP[weather.currently.icon];
-  const bkColor = weather && BACKGROUND_MAP[weather.currently.icon];
+
+  if(!weather){
+    return null;
+  }
+
+  console.log(weather.current);
 
   return (
-    <div className="weather" style={{backgroundColor: bkColor}}>
+    <div className="weather" style={{backgroundColor: BACKGROUND_MAP[weather.currently.icon]}}>
       <div className="weather__container">
-        <div className={`icon ${weatherCls}`} />
-        {/*{JSON.stringify(weather)}*/}
+        <div className={`icon ${ICON_MAP[weather.currently.icon]}`} />
       </div>
+      <p className="weather__temp">{weather.currently.temperature}&deg;</p>
     </div>
   )
 }
