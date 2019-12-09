@@ -1,0 +1,65 @@
+.news {
+  height: 100vh;
+  padding: 2rem;
+  position: relative;
+
+  img {
+    margin-bottom: 5px;
+  }
+
+  &__time {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+  }
+
+  &__transition {
+
+    &-enter {
+      transform: translateY(110%);
+    }
+
+    &-enter.news__transition-enter-active {
+      transform: translateY(0);
+      transition: transform 2s;
+    }
+
+    &-leave {
+      position: absolute;
+      top: 2rem;
+      left:2rem;
+      //bottom:2rem;
+      right:2rem;
+    }
+
+    &-leave.news__transition-leave-active {
+      transform: translateY(-110%);
+      transition: transform 2s;
+    }
+  }
+
+  &__card {
+    padding: 40px;
+    height: 100%;
+    border-radius: 5px;
+
+    &__desc {
+      font-size: .9rem;
+    }
+
+    &__by {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    &__date {
+      font-size: .8rem;
+      font-weight: lighter;
+    }
+
+    &__text {
+      font-size: 1.5rem;
+    }
+  }
+}

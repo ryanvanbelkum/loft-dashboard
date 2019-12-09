@@ -20,7 +20,7 @@ const IndexPage = () => (
       </div>
     </div>
     <div className="column home__right">
-      {/*<News />*/}
+      <News />
     </div>
   </Layout>
 )

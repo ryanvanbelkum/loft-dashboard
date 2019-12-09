@@ -1,23 +1,70 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState, useRef} from "react"
+import color from 'randomcolor';
+import moment from 'moment';
+import NewsCard from './news-card';
+import useInterval from '../hooks/useInterval';
 
 import './news.scss';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group"
+
+const ONE_SEC = 1000;
+// const TWO_MIN = 120000;
+const TWO_MIN = 10000;
+const HALF_HOUR = 1.8e+6;
+
+const URL = 'https://nostalgic-panini-628d13.netlify.com/.netlify/functions/news';
 
 const News = () => {
-  useEffect(() => {
-    const url = 'https://newsapi.org/v2/top-headlines?' +
-      'country=us&' +
-      'apiKey=41f90b389f164017b9de66aed6468c0c';
-    const req = new Request(url);
-    fetch(req)
+  const [news, setNews] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [time, setTime] = useState(moment());
+
+  const fetchNews = () => {
+    fetch(URL)
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => setNews(response.articles.map(article => ({
+        ...article,
+        color: color({
+          luminosity: 'light',
+          format: 'rgba',
+          alpha: 0.1
+        })
+      }))))
+  };
+
+  useEffect(() => {
+    fetchNews();
   }, []);
+
+  useInterval(() => {
+    fetchNews();
+  }, HALF_HOUR);
+
+  useInterval(() => {
+    setTime(moment());
+  }, ONE_SEC);
+
+  useInterval(() => {
+    const end = news.length - 1;
+    const newIndex = index === end ? 0 : index + 1;
+    setIndex(newIndex);
+  }, TWO_MIN);
+
+  if(!news.length){
+    return null;
+  }
+
+  const currentArticle = news[index];
 
   return (
     <div className="news">
-      <div className="news__card">
-
-      </div>
+      <p className="news__time">{time.format('LT')}</p>
+      <ReactCSSTransitionGroup
+        transitionName="news__transition"
+        transitionEnterTimeout={2000}
+        transitionLeaveTimeout={2000}>
+          <NewsCard article={currentArticle} key={index} />
+      </ReactCSSTransitionGroup>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import humps from 'humps';
+import useInterval from '../hooks/useInterval';
 
 import './weather.scss';
 
@@ -29,21 +29,27 @@ const BACKGROUND_MAP = {
   'thunderstorm': '#8e8e8e',
 }
 
+const TEN_MIN = 600000;
+
 const Weather = () => {
   const [weather, setWeather] = useState(null);
-  useEffect(() => {
+  const fetchWeather = () => {
     fetch('https://nostalgic-panini-628d13.netlify.com/.netlify/functions/weather')
       .then(res => res.json())
-      .then(res => humps.camelizeKeys(res))
       .then(res => setWeather(res));
+  }
+  useEffect(() => {
+    fetchWeather();
   }, []);
+
+  useInterval(() => {
+    fetchWeather();
+  }, TEN_MIN);
 
   if(!weather){
     return null;
   }
-
-  console.log(weather.current);
-
+  
   return (
     <div className="weather" style={{backgroundColor: BACKGROUND_MAP[weather.currently.icon]}}>
       <div className="weather__container">

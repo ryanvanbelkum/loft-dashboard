@@ -34,7 +34,6 @@ module.exports = {
         fonts: [
           {
             family: `Bebas Neue`,
-            variants: [`400`, `700`]
           },
         ],
       },

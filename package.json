@@ -16,9 +16,12 @@
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-sharp": "^2.3.3",
     "humps": "^2.0.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
+    "randomcolor": "^0.5.4",
     "react": "^16.11.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1"
   },
