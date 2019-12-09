@@ -11,7 +11,7 @@
     "@turf/turf": "^5.1.6",
     "btoa": "^1.2.1",
     "encoding": "^0.1.12",
-    "faunadb": "^2.7.0",
+    "faunadb": "^2.10.0",
     "humps": "^2.0.1",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0"
