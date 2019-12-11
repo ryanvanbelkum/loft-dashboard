@@ -1,6 +1,6 @@
 import humps from 'humps';
 import fetch from 'node-fetch';
-import {preflight, response} from "./utils";
+import {preflight, response} from "./utils/utils";
 
 exports.handler = async (event, context, callback) => {
     if (event.httpMethod === 'OPTIONS') {

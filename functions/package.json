@@ -1,5 +1,4 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "lambda-serve": "netlify-lambda serve ./src -c ./webpack.config.js",
     "lambda-build": "netlify-lambda build ./src -c ./webpack.config.js"
@@ -12,6 +11,7 @@
     "btoa": "^1.2.1",
     "encoding": "^0.1.12",
     "faunadb": "^2.10.0",
+    "firebase-admin": "^8.8.0",
     "humps": "^2.0.1",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0"
@@ -23,7 +23,8 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "netlify-lambda": "^1.4.13"
+    "netlify-lambda": "^1.4.13",
+    "webpack-node-externals": "^1.7.2"
   },
   "private": true
 }

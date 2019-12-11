@@ -1,29 +1,43 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useCallback} from "react"
 import moment from 'moment';
 import useInterval from '../hooks/useInterval';
+import firestore from "../firebase";
 
 import './coffee.scss';
 
 const MIN = 60000;
 
 const Coffee = () => {
-  const [coffeeTimestamp, setCoffeeTimestamp] = useState(null);
-  const fetchCoffeeTimestamp = () => {
-    fetch('https://nostalgic-panini-628d13.netlify.com/.netlify/functions/coffee')
-      .then((response) => response.json())
-      .then((response) => setCoffeeTimestamp(response.lastMadeTimestamp))
-  };
+  const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(null);
+  const [duration, setDuration] = useState(moment.duration());
+  const calcDuration = useCallback(() => {
+    const now = moment();
+    const end = moment(lastUpdateTimestamp);
+    const duration = moment.duration(now.diff(end));
+
+    setDuration(duration);
+  }, [lastUpdateTimestamp]);
 
   useEffect(() => {
-    fetchCoffeeTimestamp();
+    const unsub = firestore.collection("dashboard").onSnapshot(snapshot => {
+      const dashboard = snapshot.docs.map(doc => ({ [doc.id]: doc.data() }))[0];
+      const timestamp = dashboard.coffee.lastUpdateTimestamp;
+      setLastUpdateTimestamp(timestamp);
+
+      const now = moment();
+      const end = moment(timestamp);
+      const duration = moment.duration(now.diff(end));
+
+      setDuration(duration);
+    });
+
+    return () => unsub();
   }, []);
+
   useInterval(() => {
-    fetchCoffeeTimestamp();
+    calcDuration();
   }, MIN)
 
-  const now = moment();
-  const end = moment(coffeeTimestamp);
-  const duration = moment.duration(now.diff(end));
   const hour = Math.floor(duration.asHours());
   const min = Math.floor(duration.asMinutes() % 60);
 

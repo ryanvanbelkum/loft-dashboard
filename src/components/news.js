@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react"
+import React, {useEffect, useState} from "react"
 import color from 'randomcolor';
 import moment from 'moment';
 import NewsCard from './news-card';
