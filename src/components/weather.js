@@ -49,7 +49,7 @@ const Weather = () => {
   if(!weather){
     return null;
   }
-  
+
   return (
     <div className="weather" style={{backgroundColor: BACKGROUND_MAP[weather.currently.icon]}}>
       <div className="weather__container">
