@@ -20,9 +20,8 @@ $blue: #202e3a;
   flex-direction: column;
 
   &__time {
-    //position: absolute;
-    //bottom: 0;
-    //left: 0;
+    padding: 0 20px;
+    line-height: 40px;
     margin-top: 50px;
     font-size: 2.5rem;
   }

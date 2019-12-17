@@ -19,12 +19,12 @@ const ICON_MAP = {
 const BACKGROUND_MAP = {
   'clear-day': '#FFF',
   'clear-night': '#8e8e8e',
-  'rain': '#c1c1c1',
-  'snow': '#c1c1c1',
-  'sleet': '#c1c1c1',
+  'rain': '#e8e8e8',
+  'snow': '#e8e8e8',
+  'sleet': '#e8e8e8',
   'fog': '#c1c1c1',
   'cloudy': '#c1c1c1',
-  'partly-cloudy-day': '#c1c1c1',
+  'partly-cloudy-day': '#e8e8e8',
   'partly-cloudy-night': '#7b7b7b',
   'thunderstorm': '#8e8e8e',
 }

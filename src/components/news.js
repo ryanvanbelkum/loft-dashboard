@@ -8,8 +8,7 @@ import './news.scss';
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"
 
 const ONE_SEC = 1000;
-// const TWO_MIN = 120000;
-const TWO_MIN = 10000;
+const TWENTY_SEC = 20000;
 const HALF_HOUR = 1.8e+6;
 
 const URL = 'https://nostalgic-panini-628d13.netlify.com/.netlify/functions/news';
@@ -48,7 +47,7 @@ const News = () => {
     const end = news.length - 1;
     const newIndex = index === end ? 0 : index + 1;
     setIndex(newIndex);
-  }, TWO_MIN);
+  }, TWENTY_SEC);
 
   if(!news.length){
     return null;

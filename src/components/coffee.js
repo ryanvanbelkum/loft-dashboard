@@ -10,6 +10,7 @@ const MIN = 60000;
 const Coffee = () => {
   const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(null);
   const [duration, setDuration] = useState(moment.duration());
+  const [type, setType] = useState("beans");
   const calcDuration = useCallback(() => {
     const now = moment();
     const end = moment(lastUpdateTimestamp);
@@ -23,6 +24,7 @@ const Coffee = () => {
       const dashboard = snapshot.docs.map(doc => ({ [doc.id]: doc.data() }))[0];
       const timestamp = dashboard.coffee.lastUpdateTimestamp;
       setLastUpdateTimestamp(timestamp);
+      setType(dashboard.coffee.type);
 
       const now = moment();
       const end = moment(timestamp);
@@ -54,7 +56,7 @@ const Coffee = () => {
           <div className="coffee" />
         </div>
       </div>
-      <p className="coffee__time">Fresh pot brewed {hour} hour(s) and {min} min(s) ago</p>
+      <p className="coffee__time">Fresh pot of {type} brewed {hour} hour(s) and {min} min(s) ago</p>
     </div>
   )
 }
